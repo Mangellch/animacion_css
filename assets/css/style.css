@@ -219,6 +219,7 @@ footer {
     /*seccion cards*/
     .seccion__cards {
         display: grid;
+        margin-right: 2rem;
         grid-template-columns: repeat(2, 1fr);
         place-items: center;
         margin-bottom: 1rem;
