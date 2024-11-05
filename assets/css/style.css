@@ -28,38 +28,41 @@ html {
     font-weight: 600;
 }
 
+
 main {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-areas: 
         "header header"
-        "nav section"
+        "titulo titulo"
+        "section section"
         "footer footer";
     }
 
 /*header*/
-    .logo {
+.logo {
     width: 5.5rem;
-    text-align: left;
-  }
+}
 
-    .header {
-    text-align: center;
+.header {
+    display: grid;
+    place-items: center;
     font-size: 10px;
     padding-top: 1rem;
     grid-area: header;
     background-color: var(--verdePastel); 
-  }
+}
 
-  .segundo__titulo {
+.segundo__titulo {
+    grid-area: titulo;
     padding: 1rem;
     margin-right: 25px;
     font-size: 16px;
     text-align: center;
-  }
+}
 
   /*nav*/
-  .nav {
+  nav {
     display: none;
     grid-area: nav;
   }
@@ -74,32 +77,28 @@ main {
   }
 
   .toggle_menu {
-    display: flex;
-    flex-direction: column;
+    display: block;
     cursor: pointer;
-    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 
 /*seccion cards*/
-
 .seccion__cards {
+    display: grid;
     grid-area: section;
-    margin-right: 35px;
+    place-items: center;
 }
-  .cards {
-    grid-area: section;
-  }
 
-  .card {
+.card {
     align-items: center;
     width: 300px; 
     background-color: var(--colorSecundario);
     border-radius: 10px;
     padding: 20px;
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     box-shadow: 1px 1px 13px 4px rgba(143, 143, 143, 0.77);
-}
+    }
 
 .card__imagen {
     width: 70%;
@@ -128,8 +127,7 @@ main {
 }
 
 /*footer*/
-
-.footer {
+footer {
     grid-area: footer;
     padding: 15px;
     background-color: var(--verdePastel);
@@ -177,30 +175,32 @@ main {
 @media (min-width: 576px) {
     main {
         display: grid;
-        grid-template-columns: 1fr 2fr;
+        grid-template-columns: 1fr 1fr;
         grid-template-areas: 
-            "header header"
-            "nav section"
-            "footer footer";
-        margin-bottom: 1rem;
+        "header header"
+        "nav titulo"
+        "nav section"
+        "footer footer";
     }
 
     header {
-        grid-area: header;
         background-color: var(--verdePastel);
-        width: 100%; /* Ancho total de la pantalla */
-        padding: 1rem; /* Ajusta el padding para espaciar el contenido */
+        width: 100%; 
+        padding: 1rem; 
     }
 
-    .toggle_menu {
+    header .toggle_menu {
         display: none; 
     }
 
      /* barra de navegación */
-     .nav {
+    .nav {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        justify-content: space-around;
         align-items: center;
+        width: 155px;
+        background-color: var(--colorPrincipal);;
         padding: 1rem;
         height: auto;
     }
@@ -210,26 +210,37 @@ main {
         padding: 5px;
         text-transform: uppercase;
         font-weight: 500;
-        transition: background-color 0.3s, color 0.3s, border-radius 0.3s;
     }
 
+    .segundo__titulo {
+        margin-top: 1rem;
+    }
+
+    /*seccion cards*/
     .seccion__cards {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        padding-right: 1rem;
-        padding-left: 1rem;
+        place-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .card {
+        margin: 1rem;
+        width: 250px;
+        height: 320px;
     }
 
     .card__imagen {
-        width: 80%; 
+        width: 150px; 
+        height: 150px;
+        gap: 1rem;
     }
+}
 
-    /*Menu*/
-    .toggle_menu{
-        display: flex;
+@media (max-width: 575px) { /* Definición para móviles */
+    .nav {
+        display: none; /* Oculta el aside en pantallas pequeñas */
     }
-
-
 }
 
 
@@ -237,11 +248,12 @@ main {
 @media (min-width: 992px) {
     main {
         display: grid;
-        grid-template-columns: 1fr 2fr;
-        grid-template-areas:
-            "header header"
-            "nav section"
-            "footer footer";
+        grid-template-columns: 200px 1fr;
+        grid-template-areas: 
+        "header header"
+        "nav titulo"
+        "nav section"
+        "footer footer";
     }
 
     /*header*/
@@ -255,21 +267,15 @@ main {
 
     h1 {
         text-align: center;
+        margin-top: 1rem;
         text-transform: uppercase;
-        font-weight: 300;
         font-size: 30px;
         color: var(--colorTitulo);
-        display: flex;
-        justify-content: center;
         flex-grow: 1;
-        margin: 0;
     }
 
     .segundo__titulo {
-        padding: 2rem;
-        margin-right: 25px;
         font-size: 20px;
-        text-align: center;
       }
 
     /*nav*/
@@ -277,20 +283,18 @@ main {
         display: flex;
         flex-direction: column;
         background-color: var(--colorPrincipal);
-        width: 65%;
         padding: 60px;
       }
 
     .nav__texto {
-        margin-left: 8px;
         margin-top: 10px;
         text-transform: uppercase;
         font-weight: 500;
         transition: background-color 0.3s, color 0.3s, border-radius 0.3s;
     }
 
-    .nav__categorias {
-        margin-left: 8px;
+    header .toggle_menu {
+        display: none; 
     }
 
     /*boton*/
@@ -313,11 +317,14 @@ main {
     /*Cards*/
     .seccion__cards {
         display: grid;
-        grid-template-columns: repeat(3, 1fr); /* Escritorio: 3 columnas */
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+        margin-bottom: 2rem;
+        margin-top: 1rem;
     }
 
     .card {
-        margin: 2rem;
+        margin: 0;
         box-shadow: 1px 1px 13px 4px rgba(143, 143, 143, 0.77);
     }
 
@@ -325,8 +332,7 @@ main {
         width: 200px; 
         height: 200px; 
         border: 2px solid #000;
-        margin-left: auto;
-        margin-right: auto; 
+        margin: 0 auto;
         filter: grayscale(100%);
         transition: filter 0.5s ease; 
         cursor: pointer;
@@ -337,11 +343,11 @@ main {
     }
 
     /*footer*/
-    .footer {
-        grid-area: footer;
+    footer {
         padding: 15px;
         background-color: var(--verdePastel);
         box-shadow: 1px 1px 13px 4px rgba(143, 143, 143, 0.77);
+        grid-area: footer;
     }
     
     .titulo__footer {
